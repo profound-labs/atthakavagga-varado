@@ -1,0 +1,258 @@
+\ProvidesPackage{mylayout}
+
+\usepackage{nag}
+
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage[cmyk]{xcolor}
+% \usepackage{ragged2e}
+
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{TeX Gyre Pagella}
+
+\usepackage{multicol}
+
+%% blurb.com pocket size:
+%% 5.125 x 8.25 in
+%% 369 x 594 pt
+
+%% Use inches! Using pt somehow produces a pdf that blurb.com recognizes as different size.
+\usepackage{geometry}
+\geometry{
+paperwidth=5.125in,
+paperheight=8.25in,
+inner=15mm
+}
+\setlength{\stockwidth}{5.125in}
+\setlength{\stockheight}{8.25in}
+
+\addtolength{\textheight}{4\baselineskip}
+\addtolength{\headheight}{5pt}
+\addtolength{\topmargin}{-1.5\baselineskip}
+\addtolength{\headsep}{0.5\baselineskip}
+\addtolength{\footskip}{0.5\baselineskip}
+
+\setmarginnotes{2mm}{4ex}{0.5\baselineskip}
+
+\setlength{\vgap}{1.5em}
+\setlength{\vindent}{\vgap}
+
+\renewcommand*{\notedivision}{\section*{\notesname}}
+\renewcommand*{\pagenotesubhead}[3]{}
+\renewcommand*{\notenumintext}[1]{\textsuperscript{\thinspace [#1]}}
+\renewcommand{\prenoteinnotes}{\par\noindent}
+\renewcommand{\postnoteinnotes}{\par\vspace*{0.5\baselineskip}}
+% \renewcommand\prenotetext{\begingroup\itshape}
+% \renewcommand\postnotetext{\endgroup}
+
+% % % \usepackage{hyperref}
+% % % \hypersetup{
+% % %   bookmarks=true,
+% % %   bookmarksopen=true,
+% % %   bookmarksopenlevel=1,
+% % %   pdftoolbar=true,
+% % %   pdfmenubar=true,
+% % %   colorlinks=true,
+% % %   unicode=true,
+% % %   hyperindex=true,
+% % %   linkcolor=black,
+% % %   citecolor=black,
+% % %   filecolor=black,
+% % %   urlcolor=black
+% % % }
+% % % \usepackage{bookmark}
+% % % \bookmarksetup{open=false}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{1em}
+
+% \linenottooshot[0.25\textwidth]
+% \parfillskip 0pt plus 0.75\textwidth
+
+% ====== dealing out some penalties ======
+
+% % \tolerance 1414
+% % \hbadness 1414
+% % \emergencystretch 1.5em
+% % \hfuzz 0.3pt
+% % \vfuzz \hfuzz
+% \clubpenalty=9996
+% \tolerance=1414
+% % \widowpenalty=10000
+% \widowpenalty=8500
+% \brokenpenalty=6000
+% % \finalhyphendemerits=4000
+% % % We don't deal with equations.
+% % \predisplaypenalty=10000
+% % \postdisplaypenalty=1549
+% % \displaywidowpenalty=1602
+
+% ====== end of penalties ======
+
+\definecolor{chapter}{gray}{0.2}
+\definecolor{quotemark}{gray}{0.5}
+\definecolor{octadsuttaname}{gray}{0.6}
+
+\renewcommand{\normalsize}{%
+   \@setfontsize\normalsize{10}{14}
+   \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+   \abovedisplayshortskip \z@ \@plus3\p@
+   \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
+\normalsize
+
+% ====== custom macros ======
+
+\def\gobble@spaces{\@ifnextchar\space{\@gobble\gobble@spaces}{}}
+
+\newcommand{\verseref}[1]{\mbox{}\marginpar{#1.}\gobble@spaces}
+\newcommand{\pali}[1]{\textit{#1}}
+\newcommand{\suttaref}[1]{\hspace*{\fill}\footnotesize\begingroup #1 \endgroup\par}
+\newcommand{\attrib}[1]{\nopagebreak{\raggedleft\footnotesize #1\par}}
+
+\def\@osn{}
+\newcommand{\setOctadSuttaName}[1]{\def\@osn{#1}}
+
+% ====== end of custom macros ======
+
+% ====== page styles ======
+
+% \sodef\soSection{}{.1em}{.5em plus.1em}{.1em plus.1em minus.1em}
+
+\makepagestyle{normalpage}
+  \makeheadrule{normalpage}{\textwidth}{0.25pt}
+  \makepsmarks{normalpage}{%
+    \createmark{chapter}{left}{nonumber}{}{}
+    \createmark{section}{right}{nonumber}{}{}
+    \createplainmark{toc}{both}{\contentsname}
+    \createplainmark{lof}{both}{\listfigurename}
+    \createplainmark{lot}{both}{\listtablename}
+    \createplainmark{bib}{both}{\bibname}
+    \createplainmark{index}{both}{\indexname}
+    \createplainmark{glossary}{both}{\glossaryname}
+  }
+  \makeevenhead{normalpage}{}{\tiny\leftmark}{}
+  \makeoddhead{normalpage}{}{\tiny\rightmark}{}
+  \makeevenfoot{normalpage}{}{\thepage}{}
+  \makeoddfoot{normalpage}{}{\thepage}{}
+
+\pagestyle{normalpage}
+
+\makepagestyle{octadpage}
+  \makeheadrule{octadpage}{\textwidth}{0.25pt}
+  \makepsmarks{octadpage}{%
+    \global\def\chaptermark##1{\markboth{\memUChead{##1}}{\rightmark}}
+    \createmark{chapter}{left}{shownumber}{}{. }
+%     \createmark{section}{right}{nonumber}{}{}
+    \createplainmark{toc}{both}{\contentsname}
+    \createplainmark{lof}{both}{\listfigurename}
+    \createplainmark{lot}{both}{\listtablename}
+    \createplainmark{bib}{both}{\bibname}
+    \createplainmark{index}{both}{\indexname}
+    \createplainmark{glossary}{both}{\glossaryname}
+  }
+  \makeevenhead{octadpage}{}{\tiny\leftmark}{}
+  \makeoddhead{octadpage}{}{\tiny\MakeUppercase{\rightmark}}{}
+  \makeevenfoot{octadpage}{}{\thepage}{}
+  \makeoddfoot{octadpage}{}{\thepage}{}
+
+% ====== end of page styles ======
+
+% ====== chapter style ======
+
+% \sodef\soChapter{}{.1em}{.5em plus.1em}{.1em plus.1em minus.1em}
+
+\makechapterstyle{octad}{%
+  \chapterstyle{default}
+  \setlength{\beforechapskip}{0em}
+  \setlength{\midchapskip}{1em}
+  \setlength{\afterchapskip}{2em}
+  \renewcommand*{\chapnumfont}{\LARGE}
+  \renewcommand*{\chapnamefont}{\Large}
+  \renewcommand*{\chaptitlefont}{\Large}
+  \renewcommand*{\printchaptername}{}
+  \renewcommand*{\printchapternum}{\chapnumfont\centering \textemdash\ \thechapter\ \textemdash}
+  \renewcommand*{\printchaptertitle}[1]{%
+    \centering\chaptitlefont%
+    \color{octadsuttaname}\@osn\par%
+    \vspace*{3mm}\color{chapter}\MakeUppercase{##1}%
+    \global\def\@osn{}%
+  }
+}
+
+\chapterstyle{octad}
+
+\makechapterstyle{appendix}{%
+  \chapterstyle{default}
+  \setlength{\beforechapskip}{0em}
+  \setlength{\midchapskip}{1em}
+  \setlength{\afterchapskip}{2em}
+  \renewcommand*{\chapnumfont}{\LARGE}
+  \renewcommand*{\chapnamefont}{\Large}
+  \renewcommand*{\chaptitlefont}{\Large}
+  \renewcommand*{\printchaptername}{}
+  \renewcommand*{\printchapternum}{\chapnumfont\centering Appendix \thechapter}
+  \renewcommand*{\printchaptertitle}[1]{%
+    \centering \chaptitlefont\color{chapter}\MakeUppercase{##1}}
+}
+
+\makechapterstyle{contents}{%
+  \chapterstyle{default}
+  \setlength{\beforechapskip}{0em}
+  \setlength{\midchapskip}{1em}
+  \setlength{\afterchapskip}{2em}
+  \renewcommand*{\chapnumfont}{\LARGE}
+  \renewcommand*{\chapnamefont}{\Large}
+  \renewcommand*{\chaptitlefont}{\Large}
+  \renewcommand*{\printchaptername}{}
+  \renewcommand*{\printchapternum}{}
+  \renewcommand*{\printchaptertitle}[1]{%
+    \centering \chaptitlefont\color{chapter}\MakeUppercase{##1}}
+}
+
+% ====== end of chapter style ======
+
+% ====== section style ======
+
+\setsecheadstyle{\Large\upshape\memRTLraggedright}
+\setsubsecheadstyle{\large\itshape\memRTLraggedright}
+\setsubsubsecheadstyle{\normalsize\itshape\memRTLraggedright}
+
+% ====== end of section style ======
+
+% ====== table of contents, toc ======
+
+\renewcommand{\cftchapterfont}{\upshape}
+
+% ====== end of toc =======
+
+% ====== environments ======
+
+\newenvironment{suttaquote}[1]%
+{\def\theref{#1}\vspace*{0.5em}%
+{\large\color{quotemark}\{}}%
+{\nolinebreak{\large\color{quotemark}\}} \suttaref{\mbox{\theref}}}
+
+\newenvironment{narrator}{%
+\setlength{\parindent}{0em}%
+\list{}{\setlength{\leftmargin}{0.8em}}%
+\item[]\raisebox{0pt}[0pt][0pt]{\large\color{quotemark}\textlangle}}%
+{{\large\color{quotemark}\textrangle}\endlist}
+
+% ====== end of environments ======
+
+% ====== settings to go last ======
+
+% \usepackage[perpage,multiple,stable,symbol*]{footmisc}
+% \DefineFNsymbols*{stars}{{*}{**}{***}{4}{5}{6}{7}{8}{9}{10}}
+% \setfnsymbol{stars}
+
+\usepackage[perpage,multiple,stable]{footmisc}
+
+\usepackage{microtype}
+\microtypesetup{
+% babel=true,
+final
+}

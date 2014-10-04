@@ -1,0 +1,156 @@
+\documentclass[10pt,twoside,final]{memoir}
+
+\title{The Group of Octads}
+\author{Bhante Varado}
+\date{}
+
+\usepackage{mylayout}
+
+% \hyphenation{}
+
+%% PDF/X-3:2002 info
+%% =================
+
+\pdfobjcompresslevel=0%
+\pdfminorversion=3%
+\pdfinfo{
+  /Title (The Group of Octads)
+  /Author (Bhante Varado)
+  /Subject (buddhism)
+  /Keywords (buddhism)
+  /GTS_PDFXVersion (PDF/X-3:2002)
+}%
+\pdfpageattr{
+/MediaBox [0 0 369.00000 594.00000]
+/BleedBox [0.00000 0.00000 369.00000 594.00000]
+/CropBox [0 0 369.00000 594.00000]
+/TrimBox [0.00000 0.00000 369.00000 594.00000]
+}
+\pdfcatalog{
+  /PageMode /UseNone
+  /OutputIntents [ <<
+    /Info (none)
+    /Type /OutputIntent
+    /S /GTS_PDFX
+    /OutputConditionIdentifier (Blurb.com)
+    /RegistryName (http://www.color.org/)
+  >> ]
+}%
+
+%% ==============
+
+\makepagenote
+
+\makeoddfoot{normalpage}{\tiny\bfseries TEST PRINT \textbullet\ TRANSLATION TO BE REVISED}{}{\thepage}
+\makeevenfoot{normalpage}{\thepage}{}{\tiny\bfseries TEST PRINT \textbullet\ TRANSLATION TO BE REVISED}
+
+\makeoddfoot{octadpage}{\tiny\bfseries TEST PRINT \textbullet\ TRANSLATION TO BE REVISED}{}{\thepage}
+\makeevenfoot{octadpage}{\thepage}{}{\tiny\bfseries TEST PRINT \textbullet\ TRANSLATION TO BE REVISED}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+{\centering\par
+
+\vspace*{3\baselineskip}
+Sutta Nip\=ata IV
+\bigskip
+
+A\d{t}\d{t}haka Vagga
+\bigskip
+
+The Group of Octads
+\bigskip
+
+Translated by Bhante Varado
+
+}
+
+\cleardoublepage
+
+\chapterstyle{contents}
+
+\tableofcontents*
+
+% label regexp:
+% ^([0-9]{3})\.
+% \\verseref{\1.}\\label{atthaka-\1}
+
+% \chapter{Preface}
+% \input{./src-tex/preface.tex}
+% 
+% \chapter{Preface v2}
+% \input{./src-tex/preface_v2.tex}
+
+% \chapter{Copyright notice}
+% \chapter{Dedication}
+% \chapter{Bibliography}
+
+% \pagenumbering{arabic}
+% \setcounter{page}{1}
+
+\setcounter{chapter}{0}
+
+\chapterstyle{octad}
+\pagestyle{octadpage}
+
+\input{./src-tex/sutta_snp-4.tex}
+
+\addtocontents{toc}{\newpage\par APPENDIX \par\vspace*{0.5\baselineskip}}
+
+\setcounter{chapter}{0}
+
+\chapterstyle{appendix}
+\pagestyle{normalpage}
+
+\midsloppy
+
+\chapter{The Octads in a Nutshell}
+\input{./src-tex/appendix_the-octads-in-a-nutshell.tex}
+
+\chapter{Goal and path: what is the relationship?}\label{goal-and-the-path}
+\input{./src-tex/appendix_goal-and-path.tex}
+
+\chapter{Do arahants think `I am'?}
+\input{./src-tex/appendix_do-arahants-think-i-am.tex}
+
+\chapter{Do arahants compare themselves?}
+\input{./src-tex/appendix_do-arahants-compare.tex}
+
+\chapter{Did the Buddha think Buddhism was the best?}
+\input{./src-tex/appendix_did-the-buddha-think-buddhism.tex}
+
+\chapter{What happens to an arahant at death?}
+\input{./src-tex/appendix_what-happens-to-an-arahant.tex}
+
+\chapter{Is the arahant free of kamma?}\label{arahant-free-of-kamma}
+\input{./src-tex/appendix_is-the-arahant-free-of-kamma.tex}
+
+\chapter{Do arahants blame themselves?}\label{arahant-blame-themselves}
+\input{./src-tex/appendix_do-arahants-blame-themselves.tex}
+
+\chapter{What is the consciousness of an arahant?}\label{arahant-consciousness}
+\input{./src-tex/appendix_what-is-the-consciousness-of-an-arahant.tex}
+
+\chapter{Should monks forsake precepts and practices?}\label{should-monks-forsake}
+\input{./src-tex/appendix_should-monks-forsake-precepts.tex}
+
+% \chapter{Transcending religious differences: a modern perspective}
+% \input{./src-tex/appendix_transcending-religious-differences.tex}
+
+\chapter{The Story of Venerable So\d{n}a}
+\input{./src-tex/appendix_story-of-ven-sona.tex}
+
+\chapter{Venerable Mah\=akacc\=ana's explanation of verse 844}\label{mahakaccana-v844}
+\input{./src-tex/appendix_mahakaccana-explanation-verse-844.tex}
+
+\chapter{Do arahants have differences in opinion?}
+\input{./src-tex/appendix_do-arahants-have-differences.tex}
+
+\chapter{Translation notes}
+\input{./src-tex/appendix_translation-notes.tex}
+
+\mbox{}\newpage\thispagestyle{empty}\mbox{}
+
+\end{document}

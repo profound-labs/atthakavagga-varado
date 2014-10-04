@@ -1,0 +1,8 @@
+*.swp
+*.aux
+*.log
+*.toc
+*~
+*.backup
+book.main.pdf
+pdf-keep/
